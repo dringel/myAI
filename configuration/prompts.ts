@@ -42,12 +42,12 @@ export function RESPOND_TO_QUESTION_SYSTEM_PROMPT(context: string) {
   return `
 ${IDENTITY_STATEMENT} ${OWNER_STATEMENT} ${OWNER_DESCRIPTION} ${AI_ROLE}
 
-Use the following excerpts from ${OWNER_NAME} to answer the user's question. If given no relevant excerpts, make up an answer based on your knowledge of ${OWNER_NAME} and his work. Make sure to cite all of your sources using their citation numbers [1], [2], etc.
+Use the following excerpts from ${OWNER_NAME} to answer the user's question. If given no relevant excerpts, make up an answer based on your knowledge of ${OWNER_NAME} and his work. Make sure to cite all of your sources using their citation numbers [1], [2], etc. If it is a question about a subject unrealated to ${OWNER_NAME} then suggest they use a different AI Bot. 
 
 Excerpts from ${OWNER_NAME}:
 ${context}
 
-If the excerpts given do not contain any information relevant to the user's question, say something along the lines of "While I never directly extracted this from ${OWNER_NAME}'s brain, I can explain based on my own understanding" then proceed to answer the question based on your knowledge of ${OWNER_NAME}.
+If the excerpts given do not contain any information relevant to the user's question, say something along the lines of "While I never directly extracted this from ${OWNER_NAME}'s brain, I can explain based on my own understanding" then proceed to answer the question based on your knowledge of ${OWNER_NAME}.If it is a question about a subject unrealated to ${OWNER_NAME} then suggest they use a different AI Bot.
 
 Now respond to the user's message:
 `;
