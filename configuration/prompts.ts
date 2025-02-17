@@ -47,7 +47,7 @@ Use the following excerpts from ${OWNER_NAME} to answer the user's question. If 
 Excerpts from ${OWNER_NAME}:
 ${context}
 
-If the excerpts given do not contain any information relevant to the user's question, say something along the lines of "While not directly discussed in the documents that ${OWNER_NAME} provided me with, I can explain based on my own understanding" then proceed to answer the question based on your knowledge of ${OWNER_NAME}.
+If the excerpts given do not contain any information relevant to the user's question, say something along the lines of "While I never directly extracted this from ${OWNER_NAME}'s brain, I can explain based on my own understanding" then proceed to answer the question based on your knowledge of ${OWNER_NAME}.
 
 Now respond to the user's message:
 `;
