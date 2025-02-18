@@ -14,31 +14,32 @@ body {
 
 @layer base {
   :root {
-     --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
---card-foreground: 350 100% 20%;     /* Darker Pink for card text */
---popover: 350 100% 95%;             /* Light Pink for popovers */
---popover-foreground: 350 100% 20%;  /* Darker Pink for popover text */
---primary: 350 100% 80%;             /* Primary Pink */
---primary-foreground: 350 100% 10%;  /* Dark Pink foreground for contrast */
---secondary: 350 100% 85%;           /* Lighter Pink for secondary elements */
---secondary-foreground: 350 100% 20%;/* Darker Pink for secondary text */
---muted: 350 100% 92%;               /* Muted Pink */
---muted-foreground: 350 100% 40%;    /* Slightly darker muted Pink text */
---accent: 350 100% 85%;              /* Accent Pink */
---accent-foreground: 350 100% 20%;   /* Darker accent Pink text */
---destructive: 350 100% 75%;         /* Bright Pink for destructive actions */
---destructive-foreground: 350 100% 10%; /* Dark Pink for destructive text */
---border: 350 100% 80%;              /* Pink border */
---input: 350 100% 85%;               /* Input background in Pink */
---ring: 350 100% 60%;                /* Pink ring for focus states */
---chart-1: 350 100% 85%;             /* Pink for chart 1 */
---chart-2: 350 100% 80%;             /* Pink for chart 2 */
---chart-3: 350 100% 75%;             /* Pink for chart 3 */
---chart-4: 350 100% 70%;             /* Pink for chart 4 */
---chart-5: 350 100% 65%;             /* Pink for chart 5 */
---radius: 0.5rem;                    /* Keep radius the same */
+--background: 350 100% 90%;         /* Light Pink */
+--foreground: 200 100% 20%;         /* Dark Blue */
+--card: 50 100% 90%;                /* Light Yellow */
+--card-foreground: 120 100% 20%;    /* Dark Green */
+--popover: 290 100% 90%;            /* Light Purple */
+--popover-foreground: 290 100% 20%; /* Dark Purple */
+--primary: 0 100% 70%;              /* Bright Red */
+--primary-foreground: 0 0% 100%;    /* White */
+--secondary: 30 100% 85%;           /* Light Orange */
+--secondary-foreground: 30 100% 20%;/* Dark Orange */
+--muted: 180 100% 85%;              /* Light Cyan */
+--muted-foreground: 180 100% 20%;   /* Dark Cyan */
+--accent: 300 100% 85%;             /* Light Magenta */
+--accent-foreground: 300 100% 20%;  /* Dark Magenta */
+--destructive: 0 100% 60%;          /* Bright Red */
+--destructive-foreground: 0 0% 100%;/* White */
+--border: 210 100% 85%;             /* Light Blue */
+--input: 90 100% 85%;               /* Light Green */
+--ring: 270 100% 85%;               /* Light Violet */
+--chart-1: 10 100% 70%;             /* Bright Orange */
+--chart-2: 160 100% 50%;            /* Bright Green */
+--chart-3: 220 100% 60%;            /* Bright Blue */
+--chart-4: 40 100% 70%;             /* Bright Yellow */
+--chart-5: 300 100% 70%;            /* Bright Pink */
+--radius: 0.5rem;
+
 
   }
   .dark {
