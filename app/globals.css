@@ -13,32 +13,32 @@ body {
 }
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+  :root {--background: 350 100% 90%;          /* Light Pink */
+--foreground: 350 100% 20%;          /* Darker Pink for text */
+--card: 350 100% 95%;                /* Slightly lighter Pink for cards */
+--card-foreground: 350 100% 20%;     /* Darker Pink for card text */
+--popover: 350 100% 95%;             /* Light Pink for popovers */
+--popover-foreground: 350 100% 20%;  /* Darker Pink for popover text */
+--primary: 350 100% 80%;             /* Primary Pink */
+--primary-foreground: 350 100% 10%;  /* Dark Pink foreground for contrast */
+--secondary: 350 100% 85%;           /* Lighter Pink for secondary elements */
+--secondary-foreground: 350 100% 20%;/* Darker Pink for secondary text */
+--muted: 350 100% 92%;               /* Muted Pink */
+--muted-foreground: 350 100% 40%;    /* Slightly darker muted Pink text */
+--accent: 350 100% 85%;              /* Accent Pink */
+--accent-foreground: 350 100% 20%;   /* Darker accent Pink text */
+--destructive: 350 100% 75%;         /* Bright Pink for destructive actions */
+--destructive-foreground: 350 100% 10%; /* Dark Pink for destructive text */
+--border: 350 100% 80%;              /* Pink border */
+--input: 350 100% 85%;               /* Input background in Pink */
+--ring: 350 100% 60%;                /* Pink ring for focus states */
+--chart-1: 350 100% 85%;             /* Pink for chart 1 */
+--chart-2: 350 100% 80%;             /* Pink for chart 2 */
+--chart-3: 350 100% 75%;             /* Pink for chart 3 */
+--chart-4: 350 100% 70%;             /* Pink for chart 4 */
+--chart-5: 350 100% 65%;             /* Pink for chart 5 */
+--radius: 0.5rem;                    /* Keep radius the same */
+
   }
   .dark {
     --background: 0 0% 3.9%;
