@@ -13,9 +13,10 @@ body {
 }
 
 @layer base {
-  :root {--background: 350 100% 90%;          /* Light Pink */
---foreground: 350 100% 20%;          /* Darker Pink for text */
---card: 350 100% 95%;                /* Slightly lighter Pink for cards */
+  :root {
+     --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
 --card-foreground: 350 100% 20%;     /* Darker Pink for card text */
 --popover: 350 100% 95%;             /* Light Pink for popovers */
 --popover-foreground: 350 100% 20%;  /* Darker Pink for popover text */
