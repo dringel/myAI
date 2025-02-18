@@ -14,7 +14,7 @@ body {
 
 @layer base {
   :root {
---background: 350 100% 90%;         /* Light Pink */
+--background: 30 100% 85%;           /* Light Orange */
 --foreground: 200 100% 20%;         /* Dark Blue */
 --card: 50 100% 90%;                /* Light Yellow */
 --card-foreground: 120 100% 20%;    /* Dark Green */
@@ -37,7 +37,7 @@ body {
 --chart-2: 160 100% 50%;            /* Bright Green */
 --chart-3: 220 100% 60%;            /* Bright Blue */
 --chart-4: 40 100% 70%;             /* Bright Yellow */
---chart-5: 300 100% 70%;            /* Bright Pink */
+--chart-5: 90 100% 85%;               /* Light Green */
 --radius: 0.5rem;
 
 
