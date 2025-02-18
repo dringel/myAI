@@ -15,7 +15,7 @@ export type Chat = z.infer<typeof chatSchema>;
 
 export const indicatorIconTypeSchema = z.enum([
   "thinking",
-  "searching Donald's Brain",
+  "searching",
   "understanding",
   "documents",
   "none",
