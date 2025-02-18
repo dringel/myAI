@@ -6,7 +6,7 @@
   "tailwind": {
     "config": "tailwind.config.ts",
     "css": "app/globals.css",
-    "baseColor": "neutral",
+    "baseColor": "sky", 
     "cssVariables": true,
     "prefix": ""
   },
@@ -18,3 +18,4 @@
     "hooks": "@/hooks"
   }
 }
+// was "neutral" now sky
