@@ -14,7 +14,7 @@ body {
 
 @layer base {
   :root {
---background: 210 100% 85%;             /* Light Blue */
+--background: 201 32% 94%;             /* Light Blue */
 --foreground: 200 100% 20%;         /* Dark Blue */
 --card: 50 100% 90%;                /* Light Yellow */
 --card-foreground: 120 100% 20%;    /* Dark Green */
