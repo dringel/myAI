@@ -22,7 +22,7 @@ export default function ChatFooter() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          powered by Donald AI and Ringel.AI
+          powered by Toomey.AI and Ringel.AI
         </a>
       </div>
     </div>
