@@ -26,8 +26,8 @@ body {
 --secondary-foreground: 30 100% 20%;/* Dark Orange */
 --muted: 180 100% 85%;              /* Light Cyan */
 --muted-foreground: 180 100% 20%;   /* Dark Cyan */
---accent: 300 100% 85%;             /* Light Magenta */
---accent-foreground: 300 100% 20%;  /* Dark Magenta */
+--accent: 290 100% 90%;            /* Light Purple */
+--accent-foreground: 290 100% 90%;            /* Light Purple */
 --destructive: 0 100% 60%;          /* Bright Red */
 --destructive-foreground: 0 0% 100%;/* White */
 --border: 210 100% 85%;             /* Light Blue */
