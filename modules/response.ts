@@ -63,7 +63,7 @@ export class ResponseModule {
       async start(controller) {
         queueIndicator({
           controller,
-          status: "Coming up with an answer",
+          status: "Reading Donald's most inner thoughts",
           icon: "thinking",
         });
         const systemPrompt = RESPOND_TO_RANDOM_MESSAGE_SYSTEM_PROMPT();
@@ -109,7 +109,7 @@ export class ResponseModule {
       async start(controller) {
         queueIndicator({
           controller,
-          status: "Coming up with an answer",
+          status: "Reading Donald's most inner thoughts",
           icon: "thinking",
         });
         const systemPrompt = RESPOND_TO_HOSTILE_MESSAGE_SYSTEM_PROMPT();
@@ -164,7 +164,7 @@ export class ResponseModule {
             await embedHypotheticalData(hypotheticalData, providers.openai);
           queueIndicator({
             controller,
-            status: "Reading through documents",
+            status: "Reading through Donald's Resume and experiences",
             icon: "searching",
           });
           const chunks: Chunk[] = await searchForChunksUsingEmbedding(
@@ -183,7 +183,7 @@ export class ResponseModule {
             RESPOND_TO_QUESTION_SYSTEM_PROMPT(contextFromSources);
           queueIndicator({
             controller,
-            status: "Coming up with an answer",
+            status: "Reading Donald's most inner thoughts",
             icon: "thinking",
           });
           queueAssistantResponse({
