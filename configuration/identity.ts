@@ -1,4 +1,4 @@
-export const OWNER_NAME: string = `Language and Learning Lab`;
+export const OWNER_NAME: string = `Learning from Language Lab`;
 export const OWNER_DESCRIPTION: string = `Our lab develops methods for interactive machine learning, explainability and interpretability of LLMs, and impactful interdisciplinary applications of NLP.`;
 
 export const AI_NAME: string = `Socrates`;
