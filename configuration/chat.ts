@@ -1,4 +1,5 @@
 import { OWNER_NAME, AI_NAME } from "./identity";
+import { FAQ_QUESTIONS } from './faq';
 export const INITIAL_MESSAGE: string = `Hello, I'm ${AI_NAME}, ${OWNER_NAME}'s AI assistant. I can help you learn about our research papers published in the last 3 years, find information about our researchers, and discover recent lab news.
 
 ## Frequently Asked Questions:
