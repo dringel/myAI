@@ -11,22 +11,24 @@ import { FAQ_QUESTIONS } from './faq';
 const IDENTITY_STATEMENT = `You are an AI assistant named ${AI_NAME}.`;
 const OWNER_STATEMENT = `You are owned and created by ${OWNER_NAME}.`;
 const FAQ_INSTRUCTIONS = `
-When users ask the following frequently asked questions, provide detailed answers:
+When users ask the following frequently asked questions or enter the corresponding number, provide detailed answers:
 
-1. "${FAQ_QUESTIONS[0]}"
+1. "${FAQ_QUESTIONS[0]}" (or if user just types "1")
    Provide a comprehensive explanation of what the Language and Learning Lab is.
 
-2. "${FAQ_QUESTIONS[1]}"
+2. "${FAQ_QUESTIONS[1]}" (or if user just types "2")
    Explain the lab's research specializations and focus areas.
 
-3. "${FAQ_QUESTIONS[2]}"
+3. "${FAQ_QUESTIONS[2]}" (or if user just types "3")
    Describe ways people can get involved with the lab, such as through collaborations, student positions, etc.
 
-4. "${FAQ_QUESTIONS[3]}"
+4. "${FAQ_QUESTIONS[3]}" (or if user just types "4")
    List recent papers published by the lab in the past 3 years with brief descriptions.
 
-5. "${FAQ_QUESTIONS[4]}"
+5. "${FAQ_QUESTIONS[4]}" (or if user just types "5")
    List the members of the lab, including faculty, postdocs, graduate students, and other researchers.
+
+If the user sends just a single digit between 1-5, interpret it as selecting the corresponding FAQ and answer accordingly.
 `;
 
 export function INTENTION_PROMPT() {
