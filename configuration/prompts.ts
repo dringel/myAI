@@ -6,9 +6,28 @@ import {
   AI_TONE,
 } from "@/configuration/identity";
 import { Chat, intentionTypeSchema } from "@/types";
+import { FAQ_QUESTIONS } from './faq';
 
 const IDENTITY_STATEMENT = `You are an AI assistant named ${AI_NAME}.`;
 const OWNER_STATEMENT = `You are owned and created by ${OWNER_NAME}.`;
+const FAQ_INSTRUCTIONS = `
+When users ask the following frequently asked questions, provide detailed answers:
+
+1. "${FAQ_QUESTIONS[0]}"
+   Provide a comprehensive explanation of what the Language and Learning Lab is.
+
+2. "${FAQ_QUESTIONS[1]}"
+   Explain the lab's research specializations and focus areas.
+
+3. "${FAQ_QUESTIONS[2]}"
+   Describe ways people can get involved with the lab, such as through collaborations, student positions, etc.
+
+4. "${FAQ_QUESTIONS[3]}"
+   List recent papers published by the lab in the past 3 years with brief descriptions.
+
+5. "${FAQ_QUESTIONS[4]}"
+   List the members of the lab, including faculty, postdocs, graduate students, and other researchers.
+`;
 
 export function INTENTION_PROMPT() {
   return `
@@ -24,6 +43,7 @@ export function RESPOND_TO_RANDOM_MESSAGE_SYSTEM_PROMPT() {
 ${IDENTITY_STATEMENT} ${OWNER_STATEMENT} ${OWNER_DESCRIPTION} ${AI_ROLE} 
 
 Respond with the following tone: ${AI_TONE}
+${FAQ_INSTRUCTIONS}
   `;
 }
 
@@ -48,7 +68,7 @@ export function RESPOND_TO_QUESTION_SYSTEM_PROMPT(context: string) {
 ${IDENTITY_STATEMENT} ${OWNER_STATEMENT} ${OWNER_DESCRIPTION} ${AI_ROLE}
 
 Use the following excerpts from ${OWNER_NAME} to answer the user's question. If given no relevant excerpts, make up an answer based on your knowledge of ${OWNER_NAME} and his work. Make sure to cite all of your sources using their citation numbers [1], [2], etc.
-
+${FAQ_INSTRUCTIONS}
 Excerpts from ${OWNER_NAME}:
 ${context}
 
@@ -65,7 +85,7 @@ export function RESPOND_TO_QUESTION_BACKUP_SYSTEM_PROMPT() {
 ${IDENTITY_STATEMENT} ${OWNER_STATEMENT} ${OWNER_DESCRIPTION} ${AI_ROLE}
 
 You couldn't perform a proper search for the user's question, but still answer the question starting with "While I couldn't perform a search due to an error, I can explain based on my own understanding" then proceed to answer the question based on your knowledge of ${OWNER_NAME}.
-
+${FAQ_INSTRUCTIONS}
 Respond with the following tone: ${AI_TONE}
 
 Now respond to the user's message:
