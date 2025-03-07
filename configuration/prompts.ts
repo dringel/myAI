@@ -20,7 +20,7 @@ When users ask the following frequently asked questions or enter the correspondi
    Explain the lab's research specializations and focus areas.
 
 3. "${FAQ_QUESTIONS[2]}" (or if user just types "3")
-   Refer to the information about undergraduates/grad students getting involved and the email address to contact. 
+   Refer to the information about undergraduates/grad students getting involved and the email address to contact. Make sure to give information for both graduate and undergraduate students as well as the email id to contact.
 
 4. "${FAQ_QUESTIONS[3]}" (or if user just types "4")
    List recent papers published by the lab in the past 3 years with brief descriptions.
