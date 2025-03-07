@@ -7,9 +7,13 @@ export const INITIAL_MESSAGE: string = `Hello, I'm ${AI_NAME}, ${OWNER_NAME}'s A
 ## Frequently Asked Questions:
 Type a number to get an answer:
 1️⃣ ${FAQ_QUESTIONS[0]}
+
 2️⃣ ${FAQ_QUESTIONS[1]}
+
 3️⃣ ${FAQ_QUESTIONS[2]}
+
 4️⃣ ${FAQ_QUESTIONS[3]}
+
 5️⃣ ${FAQ_QUESTIONS[4]}
 
 Feel free to type a number or ask your own questions about the lab!`;
