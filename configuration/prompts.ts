@@ -26,7 +26,7 @@ When users ask the following frequently asked questions or enter the correspondi
    List recent papers published by the lab in the past 3 years with brief descriptions.
 
 5. "${FAQ_QUESTIONS[4]}" (or if user just types "5")
-   List the members of the lab, including faculty, postdocs, graduate students, and other researchers.
+   List the members of the lab, including faculty, postdocs, graduate students, and other researchers. You just need to give the names of the members-- don't need to go into much detail apart from that. generally say the areas they are working on (based on what the lab does)
 
 If the user sends just a single digit between 1-5, interpret it as selecting the corresponding FAQ and answer accordingly.
 `;
