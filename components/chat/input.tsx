@@ -1,31 +1,16 @@
-"use client";
-
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import { ArrowUp, Image as ImageIcon } from "lucide-react";
+import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
-import ChatFooter from "@/components/chat/footer";
 
-interface ChatInputProps {
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  input: string;
-  isLoading: boolean;
-}
-
-export default function ChatInput({
-  handleInputChange,
-  handleSubmit,
-  input,
-  isLoading,
-}: ChatInputProps) {
+const ChatInput = ({ handleInputChange, handleSubmit, input, isLoading }: any) => {
   const [isFocused, setIsFocused] = useState(false);
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [response, setResponse] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false); // ✅ Added loading state
+  const [loading, setLoading] = useState(false);
 
   const form = useForm({
     defaultValues: {
@@ -50,7 +35,7 @@ export default function ChatInput({
       return;
     }
 
-    setLoading(true); // ✅ Show loading state
+    setLoading(true); // Show loading state
 
     const formData = new FormData();
     formData.append("prompt", input);
@@ -69,7 +54,7 @@ export default function ChatInput({
       }
 
       const data = await res.json();
-      setResponse(data.response); // ✅ Show API response
+      setResponse(data.response); // Show API response
 
       console.log("AI Response:", data.response);
     } catch (error) {
@@ -84,12 +69,12 @@ export default function ChatInput({
 
   return (
     <>
-      <div className="z-10 flex flex-col justify-center items-center fixed bottom-0 w-full p-5 bg-white shadow-[0_-10px_15px_-2px_rgba(255,255,255,1)] text-base">
+      <div className="fixed bottom-0 w-full p-5 bg-white shadow text-base">
         <div className="max-w-screen-lg w-full">
           <Form {...form}>
             <form
-              onSubmit={handleSubmitWithImage} // ✅ Modified to use the new function
-              className={`flex-0 flex w-full p-1 border rounded-full shadow-sm ${
+              onSubmit={handleSubmitWithImage}
+              className={`flex w-full p-1 border rounded-full shadow-sm ${
                 isFocused ? "ring-2 ring-ring ring-offset-2" : ""
               }`}
             >
@@ -124,7 +109,7 @@ export default function ChatInput({
                         {...field}
                         onChange={handleInputChange}
                         value={input}
-                        className="border-none focus-visible:ring-0 focus-visible:ring-offset-0 bg-transparent"
+                        className="bg-transparent border-none"
                         onFocus={() => setIsFocused(true)}
                         onBlur={() => setIsFocused(false)}
                         placeholder="Type your message here..."
@@ -152,9 +137,9 @@ export default function ChatInput({
             <p className="text-sm font-medium">{response}</p>
           </div>
         )}
-
-        <ChatFooter />
       </div>
     </>
   );
-}
+};
+
+export default ChatInput;
