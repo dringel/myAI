@@ -47,21 +47,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     try {
-      // ✅ Upload Image to Cloudinary
+      // Upload Image to Cloudinary
       const uploadedImage = await cloudinary.uploader.upload(imageFile.filepath, {
         folder: "chatbot_images", // Optional folder for better organization
       });
 
-      // ✅ Send Image URL to OpenAI
+      // Send Text Prompt to OpenAI
       const response = await openai.chat.completions.create({
-        model: "gpt-4-turbo",
+        model: "gpt-4-turbo", // Or another model if you need image processing
         messages: [
           {
             role: "user",
-            content: [
-              { type: "text", text: prompt }, // Text prompt
-              { type: "image_url", image_url: uploadedImage.secure_url }, // Image URL from Cloudinary
-            ],
+            content: prompt, // Text content (image URL will not be part of this for now)
           },
         ],
       });
