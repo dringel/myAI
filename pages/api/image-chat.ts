@@ -20,9 +20,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ error: "Only POST requests allowed" });
   }
 
-  const form = new formidable.IncomingForm();
-  form.options.uploadDir = "./public/uploads";
-  form.keepExtensions = true;
+  // ✅ Fix: Pass options when creating the form
+  const form = new formidable.IncomingForm({
+    uploadDir: "./public/uploads", // Store images temporarily
+    keepExtensions: true,
+  });
 
   form.parse(req, async (err, fields, files) => {
     if (err) {
@@ -56,7 +58,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       res.status(200).json({ response: response.choices[0].message.content });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: "Error processing image with OpenAI." });
-    }
-  });
-}
+      res.status(500).json({ error: "Error
