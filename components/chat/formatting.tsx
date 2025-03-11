@@ -29,6 +29,16 @@ export function Formatting({ message }: { message: DisplayMessage }) {
     p: ({ children }: { children: React.ReactNode }) => {
       return renderCitations(children, message.citations);
     },
+    strong: ({ children }: { children: React.ReactNode }) => {
+      return (
+        <span className="font-bold">
+          {renderCitations(children, message.citations)}
+        </span>
+      );
+    },
+    li: ({ children }: { children: React.ReactNode }) => {
+      return renderCitations(children, message.citations);
+    },
   };
   return (
     <ReactMarkdown
