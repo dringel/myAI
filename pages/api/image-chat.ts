@@ -1,5 +1,5 @@
 import formidable from "formidable";
-import { v2 as cloudinary } from "cloudinary";
+import { v2 as cloudinary } from "cloudinary"; // Cloudinary setup
 import fs from "fs";
 import OpenAI from "openai";
 import { NextApiRequest, NextApiResponse } from "next";
@@ -9,7 +9,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY, // Make sure this is set in .env
 });
 
-// Cloudinary Setup (Replace with your credentials)
+// Cloudinary Setup (replace with your credentials)
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -34,12 +34,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   form.parse(req, async (err, fields, files) => {
     if (err) {
+      console.error("Error parsing form data:", err);
       return res.status(500).json({ error: "Error parsing form data" });
     }
 
     const prompt = Array.isArray(fields.prompt) ? fields.prompt[0] : fields.prompt || "Describe this image.";
     const imageFile = Array.isArray(files.image) ? files.image[0] : files.image;
 
+    // Ensure we have an image
     if (!imageFile || !("filepath" in imageFile)) {
       return res.status(400).json({ error: "No image provided." });
     }
@@ -47,7 +49,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
       // ✅ Upload Image to Cloudinary
       const uploadedImage = await cloudinary.uploader.upload(imageFile.filepath, {
-        folder: "chatbot_images",
+        folder: "chatbot_images", // Optional folder for better organization
       });
 
       // ✅ Send Image URL to OpenAI
@@ -57,8 +59,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           {
             role: "user",
             content: [
-              { type: "text", text: prompt },
-              { type: "image_url", image_url: uploadedImage.secure_url } as any, // Using Cloudinary URL
+              { type: "text", text: prompt }, // Text prompt
+              { type: "image_url", image_url: uploadedImage.secure_url }, // Image URL from Cloudinary
             ],
           },
         ],
@@ -66,7 +68,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       res.status(200).json({ response: response.choices[0]?.message?.content || "No response from AI" });
     } catch (error) {
-      console.error(error);
+      console.error("Error processing image with OpenAI:", error);
       res.status(500).json({ error: "Error processing image with OpenAI." });
     }
   });
