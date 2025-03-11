@@ -1,11 +1,19 @@
 import formidable from "formidable";
+import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
 import OpenAI from "openai";
 import { NextApiRequest, NextApiResponse } from "next";
 
 // OpenAI API Setup
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY, // Make sure this is set in .env
+});
+
+// Cloudinary Setup (Replace with your credentials)
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 // Disable bodyParser for file uploads
@@ -20,7 +28,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ error: "Only POST requests allowed" });
   }
 
-  // ✅ Fix: Properly handle file upload
   const form = new formidable.IncomingForm({
     keepExtensions: true,
   });
@@ -30,28 +37,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(500).json({ error: "Error parsing form data" });
     }
 
-    // ✅ Ensure prompt is always a string
     const prompt = Array.isArray(fields.prompt) ? fields.prompt[0] : fields.prompt || "Describe this image.";
-
-    // ✅ Fix: Handle both single and multiple file cases
     const imageFile = Array.isArray(files.image) ? files.image[0] : files.image;
+
     if (!imageFile || !("filepath" in imageFile)) {
       return res.status(400).json({ error: "No image provided." });
     }
-    const imagePath = imageFile.filepath;
-
-    // Convert image to Base64 for OpenAI API
-    const imageBase64 = fs.readFileSync(imagePath, { encoding: "base64" });
 
     try {
+      // ✅ Upload Image to Cloudinary
+      const uploadedImage = await cloudinary.uploader.upload(imageFile.filepath, {
+        folder: "chatbot_images",
+      });
+
+      // ✅ Send Image URL to OpenAI
       const response = await openai.chat.completions.create({
-        model: "gpt-4-vision-preview",
+        model: "gpt-4-turbo",
         messages: [
           {
             role: "user",
             content: [
               { type: "text", text: prompt },
-              { type: "image_url", image_url: `data:image/png;base64,${imageBase64}` },
+              { type: "image_url", image_url: uploadedImage.secure_url }, // Using Cloudinary URL
             ],
           },
         ],
