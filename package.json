@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "formidable": "^2.1.1",
     "@ai-sdk/openai": "^0.0.66",
     "@anthropic-ai/sdk": "^0.33.1",
     "@hookform/resolvers": "^3.9.0",
