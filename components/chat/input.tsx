@@ -24,6 +24,9 @@ export default function ChatInput({
   const [isFocused, setIsFocused] = useState(false);
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
+  const [response, setResponse] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false); // ✅ Added loading state
+
   const form = useForm({
     defaultValues: {
       message: "",
@@ -39,10 +42,15 @@ export default function ChatInput({
     }
   };
 
-  // Modified submit handler to send image with text
+  // Submit handler to send image + text to API
   const handleSubmitWithImage = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!input && !image) return; // Prevent empty submission
+    if (!input && !image) {
+      alert("Please enter a prompt or upload an image!");
+      return;
+    }
+
+    setLoading(true); // ✅ Show loading state
 
     const formData = new FormData();
     formData.append("prompt", input);
@@ -50,17 +58,28 @@ export default function ChatInput({
       formData.append("image", image);
     }
 
-    const response = await fetch("/api/image-chat", {
-      method: "POST",
-      body: formData,
-    });
+    try {
+      const res = await fetch("/api/image-chat", {
+        method: "POST",
+        body: formData,
+      });
 
-    const data = await response.json();
-    console.log("Response:", data);
+      if (!res.ok) {
+        throw new Error("API request failed");
+      }
 
-    // Clear input and image
-    setImage(null);
-    setPreview(null);
+      const data = await res.json();
+      setResponse(data.response); // ✅ Show API response
+
+      console.log("AI Response:", data.response);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Something went wrong. Check the console for details.");
+    } finally {
+      setLoading(false);
+      setImage(null);
+      setPreview(null);
+    }
   };
 
   return (
@@ -69,7 +88,7 @@ export default function ChatInput({
         <div className="max-w-screen-lg w-full">
           <Form {...form}>
             <form
-              onSubmit={handleSubmitWithImage} // Use modified submit function
+              onSubmit={handleSubmitWithImage} // ✅ Modified to use the new function
               className={`flex-0 flex w-full p-1 border rounded-full shadow-sm ${
                 isFocused ? "ring-2 ring-ring ring-offset-2" : ""
               }`}
@@ -119,13 +138,21 @@ export default function ChatInput({
               <Button
                 type="submit"
                 className="rounded-full w-10 h-10 p-0 flex items-center justify-center"
-                disabled={input.trim() === "" && !image}
+                disabled={loading || (input.trim() === "" && !image)}
               >
-                <ArrowUp className="w-5 h-5" />
+                {loading ? "..." : <ArrowUp className="w-5 h-5" />}
               </Button>
             </form>
           </Form>
         </div>
+
+        {/* Display AI Response */}
+        {response && (
+          <div className="mt-4 p-3 border rounded-lg shadow-sm bg-gray-100 max-w-screen-md w-full">
+            <p className="text-sm font-medium">{response}</p>
+          </div>
+        )}
+
         <ChatFooter />
       </div>
     </>
