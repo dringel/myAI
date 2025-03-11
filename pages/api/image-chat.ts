@@ -58,7 +58,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             role: "user",
             content: [
               { type: "text", text: prompt },
-              { type: "image_url", image_url: uploadedImage.secure_url }, // Using Cloudinary URL
+              { type: "image_url", image_url: uploadedImage.secure_url } as any, // Using Cloudinary URL
             ],
           },
         ],
