@@ -58,4 +58,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       res.status(200).json({ response: response.choices[0].message.content });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: "Error
+      res.status(500).json({ error: "Error processing image with OpenAI." });
+    }
+  });
+}
