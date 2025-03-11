@@ -1,12 +1,12 @@
 import formidable from "formidable";
 import fs from "fs";
-import { Configuration, OpenAIApi } from "openai";
+import OpenAI from "openai";
+import { NextApiRequest, NextApiResponse } from "next";
 
 // OpenAI API Setup
-const configuration = new Configuration({
+const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-const openai = new OpenAIApi(configuration);
 
 // Disable bodyParser for file uploads
 export const config = {
@@ -15,7 +15,7 @@ export const config = {
   },
 };
 
-export default async function handler(req, res) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Only POST requests allowed" });
   }
@@ -40,7 +40,7 @@ export default async function handler(req, res) {
     const imageBase64 = fs.readFileSync(imagePath, { encoding: "base64" });
 
     try {
-      const response = await openai.createChatCompletion({
+      const response = await openai.chat.completions.create({
         model: "gpt-4-vision-preview",
         messages: [
           {
@@ -53,7 +53,7 @@ export default async function handler(req, res) {
         ],
       });
 
-      res.status(200).json({ response: response.data.choices[0].message.content });
+      res.status(200).json({ response: response.choices[0].message.content });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Error processing image with OpenAI." });
