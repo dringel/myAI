@@ -21,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const form = new formidable.IncomingForm();
-  form.uploadDir = "./public/uploads"; // Store images temporarily
+  form.options.uploadDir = "./public/uploads";
   form.keepExtensions = true;
 
   form.parse(req, async (err, fields, files) => {
