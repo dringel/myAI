@@ -32,7 +32,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     const prompt = fields.prompt || "Describe this image.";
-    const imagePath = files.image?.filepath;
+    const imageFile = Array.isArray(files.image) ? files.image[0] : files.image;
+    const imagePath = imageFile?.filepath
 
     if (!imagePath) {
       return res.status(400).json({ error: "No image provided." });
