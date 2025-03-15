@@ -1,5 +1,5 @@
-export const OWNER_NAME: string = `[OWNER NAME]`;
-export const OWNER_DESCRIPTION: string = `[OWNER DESCRIPTION]`;
+export const OWNER_NAME: string = `Eta Omega Chi`;
+export const OWNER_DESCRIPTION: string = `Professional fraternity at UNC`;
 
 export const AI_NAME: string = `Max`;
 export const AI_TONE: string = `Professional, Supportive, and Motivational`;
