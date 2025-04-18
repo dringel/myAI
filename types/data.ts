@@ -15,6 +15,7 @@ export const chunkSchema = z.object({
   source_url: z.string(),
   source_description: z.string(),
   order: z.number(),
+  category: z.string().optional(),
 });
 export type Chunk = z.infer<typeof chunkSchema>;
 
