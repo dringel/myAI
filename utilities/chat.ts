@@ -90,7 +90,8 @@ export async function generateHypotheticalData(
 
 export async function searchForChunksUsingEmbedding(
   embedding: number[],
-  pineconeIndex: any
+  pineconeIndex: any,
+  intentCategory?: string // optional intent tag like "technical", "networking"
 ): Promise<Chunk[]> {
   try {
     const { matches } = await pineconeIndex.query({
@@ -99,7 +100,8 @@ export async function searchForChunksUsingEmbedding(
       includeMetadata: true,
     });
 
-    return matches.map((match: any) =>
+    // Parse all chunks as before
+    const allChunks = matches.map((match: any) =>
       chunkSchema.parse({
         text: match.metadata?.text ?? "",
         pre_context: match.metadata?.pre_context ?? "",
@@ -107,14 +109,27 @@ export async function searchForChunksUsingEmbedding(
         source_url: match.metadata?.source_url ?? "",
         source_description: match.metadata?.source_description ?? "",
         order: match.metadata?.order ?? 0,
+        category: match.metadata?.category ?? "general",
       })
     );
+
+    if (!intentCategory) return allChunks;
+
+    // Rank chunks: put exact-category matches at top
+    const rankedChunks = allChunks.sort((a, b) => {
+      const aMatch = a.category === intentCategory ? 1 : 0;
+      const bMatch = b.category === intentCategory ? 1 : 0;
+      return bMatch - aMatch;
+    });
+
+    return rankedChunks;
   } catch (error) {
     throw new Error(
-      "Error searching for chunks using embedding. Double check Pinecone index name and API key."
+      "Error searching for chunks using embedding with category filtering."
     );
   }
 }
+
 
 export function aggregateSources(chunks: Chunk[]): Source[] {
   const sourceMap = new Map<string, Source>();
