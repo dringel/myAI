@@ -116,7 +116,7 @@ export async function searchForChunksUsingEmbedding(
     if (!intentCategory) return allChunks;
 
     // Rank chunks: put exact-category matches at top
-    const rankedChunks = allChunks.sort((a, b) => {
+    const rankedChunks = allChunks.sort((a: Chunk, b: Chunk) => {
       const aMatch = a.category === intentCategory ? 1 : 0;
       const bMatch = b.category === intentCategory ? 1 : 0;
       return bMatch - aMatch;
