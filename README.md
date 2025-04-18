@@ -1,6 +1,6 @@
 # 💼 IBMax — Your Investment Banking Recruiting Mentor
 
-**Live Assistant**: [https://my-ai-git-main-xiaoxiao-mas-projects.vercel.app](https://my-ai-git-main-xiaoxiao-mas-projects.vercel.app)
+**Live Assistant**: https://my-ai-seven-zeta.vercel.app/
 
 IBMax is a custom-built AI assistant designed to support students and early-career professionals breaking into the competitive field of **investment banking**. It provides mentorship across all major recruiting categories, including technical interviews, networking, behavioral preparation, and industry insights — personalized using Retrieval-Augmented Generation (RAG) with a high-quality document base.
 
