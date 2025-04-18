@@ -46,8 +46,6 @@ import {
 } from "@/configuration/models";
 import { IntentionModule } from "@/modules/intention"; 
 
-const intent = await IntentionModule.detectIntention({ chat, openai: providers.openai });
-
 /**
  * ResponseModule is responsible for collecting data and building a response
  */
@@ -158,6 +156,7 @@ export class ResponseModule {
           status: "Figuring out what your answer looks like",
           icon: "thinking",
         });
+        const intent = await IntentionModule.detectIntention({ chat, openai: providers.openai });
         try {
           const hypotheticalData: string = await generateHypotheticalData(
             chat,
