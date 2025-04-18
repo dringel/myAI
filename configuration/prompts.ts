@@ -45,7 +45,8 @@ Respond with the following tone: ${AI_TONE}
 `;
 }
 
-// Handles structured responses to IB-related questionsexport function RESPOND_TO_QUESTION_SYSTEM_PROMPT(context: string, intentType?: string) {
+// Handles structured responses to IB-related questions
+export function RESPOND_TO_QUESTION_SYSTEM_PROMPT(context: string, intentType?: string) {
   return `
   ${IDENTITY_STATEMENT} ${OWNER_STATEMENT} ${OWNER_DESCRIPTION} ${AI_ROLE}
   
