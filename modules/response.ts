@@ -44,6 +44,7 @@ import {
   QUESTION_RESPONSE_TEMPERATURE,
   RANDOM_RESPONSE_TEMPERATURE,
 } from "@/configuration/models";
+import { IntentionModule } from "@/modules/intention"; 
 
 /**
  * ResponseModule is responsible for collecting data and building a response
@@ -155,6 +156,7 @@ export class ResponseModule {
           status: "Figuring out what your answer looks like",
           icon: "thinking",
         });
+        const intent = await IntentionModule.detectIntention({ chat, openai: providers.openai });
         try {
           const hypotheticalData: string = await generateHypotheticalData(
             chat,
@@ -167,10 +169,8 @@ export class ResponseModule {
             status: "Reading through documents",
             icon: "searching",
           });
-          const chunks: Chunk[] = await searchForChunksUsingEmbedding(
-            embedding,
-            index
-          );
+          const chunks: Chunk[] = await searchForChunksUsingEmbedding(embedding, index, intent.type);
+
           const sources: Source[] = await getSourcesFromChunks(chunks);
           queueIndicator({
             controller,
@@ -179,8 +179,7 @@ export class ResponseModule {
           });
           const citations: Citation[] = await getCitationsFromChunks(chunks);
           const contextFromSources = await getContextFromSources(sources);
-          const systemPrompt =
-            RESPOND_TO_QUESTION_SYSTEM_PROMPT(contextFromSources);
+          const systemPrompt = RESPOND_TO_QUESTION_SYSTEM_PROMPT(contextFromSources, intent.type);
           queueIndicator({
             controller,
             status: "Coming up with an answer",
