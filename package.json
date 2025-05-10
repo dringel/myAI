@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "cloudinary": "^1.37.3",
+    "formidable": "^2.1.1",
     "@ai-sdk/openai": "^0.0.66",
     "@anthropic-ai/sdk": "^0.33.1",
     "@hookform/resolvers": "^3.9.0",
@@ -73,6 +75,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/formidable": "^2.0.4",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
